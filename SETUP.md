@@ -39,9 +39,9 @@ Hand-off points between the two of you:
 4. **Clone the repo** (Jasiu shares the URL and adds the brother as a collaborator
    under GitHub → repo → Settings → Collaborators):
    ```
-   git clone https://github.com/v1l3/<repo>.git
+   git clone https://github.com/v1l3/sound-stealth.git
    ```
-   Clone it to a short path with no spaces, e.g. `C:\Dev\<repo>`.
+   Clone it to a short path with no spaces, e.g. `C:\Dev\sound-stealth`.
 5. **Make locks enforce read-only files** (run inside the cloned folder):
    ```
    git config lfs.locksverify true
