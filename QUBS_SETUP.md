@@ -1,6 +1,6 @@
-# Setup guide for Qubs123 (audio)
+# Setup guide for Qubs123 (level design)
 
-Hi! This gets you from zero to working on the game's sound. Follow the steps in order.
+Hi! This gets you from zero to building levels. Follow the steps in order.
 Every command goes into a terminal: **Git Bash** or **PowerShell** on Windows, **Terminal** on macOS.
 
 ## 1. Install Git and Git LFS (once)
@@ -50,32 +50,21 @@ Wait until Jasiu has pushed the Unreal project, then:
 1. In the `sound-stealth` folder run `git pull` to get it.
 2. Double-click the `.uproject` file to open it.
 3. Bottom right of the editor: **Source Control → Connect to Source Control**.
-4. Provider: **Git LFS 2** (the plugin is already inside the project).
+4. Provider: **Git LFS 2** (only once Jasiu has added the Git plugin to the project; until then, lock from the terminal with the commands in step 7).
    Tick **Uses Git LFS 2 File Locking workflow**, enter **Qubs123** as the user name,
    and click **Accept Settings**.
 
-## 6. Your folder
+## 6. Your folders
 
-Everything you make goes in **`Content/Audio/`**. That folder is yours. Sort it however you like, for example:
-
-```
-Content/Audio/
-  Interfaces/    the sounds Jasiu's Blueprints call (keep these names stable!)
-  SFX/           footsteps, doors, objects
-  Creatures/     creature vocals and movement
-  Ambience/      room tones, beds
-  Music/
-  MetaSounds/
-  Mixing/        submixes, attenuation, concurrency
-```
+You own **`SoundStealth/Content/Levels/`** (your maps: one per ship deck/area, e.g. `Levels/Ship/Deck_Lobby`)
+and **`Content/LevelPrototyping/`** (blockout meshes). Use `Content/Developers/<your name>/` for experiments.
 
 Two rules for working together:
-- **Don't rename or move anything in `Interfaces/`** without telling Jasiu, because their Blueprints point at
-  those assets. Changing what's *inside* them is fine, so you can redesign the sound freely.
-- **Placing sounds in a level:** use your own audio sub-level (e.g. `Content/Game/Maps/<Level>_Audio.umap`)
-  so you never need to lock Jasiu's main map. Ask Jasiu to set it up the first time.
-
-Raw DAW sessions and stems stay **outside** the repo. Only commit the exported WAVs the game uses.
+- **Place Jasiu's Blueprints** (doors, pickups, enemies) in your levels freely, but **don't edit the Blueprints
+  themselves**. Ask Jasiu if one needs to behave differently.
+- **Build to the agreed metrics** (player height, corridor/door widths, stair height) so gameplay fits.
+- The project uses World Partition with One File Per Actor, so each object you place is its own file and
+  you can both work in the same level. Lock individual actors, not the whole map.
 
 ## 7. Every time you work
 
@@ -83,16 +72,16 @@ Raw DAW sessions and stems stay **outside** the repo. Only commit the exported W
 2. **Open Unreal and lock what you'll edit:** right-click the asset → **Source Control → Check Out**.
    (A locked asset has a red tick for the other person, so they know not to touch it.)
 3. **Make your changes and save.**
-4. **Send them:** **Source Control → Submit Content**, write a short message ("Creature growl v2"),
+4. **Send them:** **Source Control → Submit Content**, write a short message ("Lobby blockout v2"),
    and submit. This commits, pushes and unlocks in one step.
 
 Terminal equivalents if you ever need them:
 ```
-git lfs lock Content/Audio/SFX/SFX_Footstep.uasset
+git lfs lock "SoundStealth/Content/Levels/Ship/Deck_Lobby.umap"
 git add -A
-git commit -m "Footstep variations"
+git commit -m "Lobby blockout"
 git push
-git lfs unlock Content/Audio/SFX/SFX_Footstep.uasset
+git lfs unlock "SoundStealth/Content/Levels/Ship/Deck_Lobby.umap"
 git lfs locks     # who has what locked
 ```
 

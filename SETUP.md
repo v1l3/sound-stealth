@@ -3,27 +3,33 @@
 Two people, one repo. Unreal assets (`.uasset`, `.umap`) are binary and **cannot be merged**,
 so the golden rule is: **lock before you edit, unlock after you push.**
 
-> Brother (audio)? Start with [AUDIO_SETUP.md](AUDIO_SETUP.md).
+> Qubs123? Start with [QUBS_SETUP.md](QUBS_SETUP.md).
 
 ## Who owns what
 
-| Folder | Owner | What lives there |
-|---|---|---|
-| `Content/Game/` | Jasiu | Maps, Blueprints, AI (creatures), player, UI, meshes, materials |
-| `Content/Audio/` | Brother | Sound waves, MetaSounds, Sound Cues, attenuation & concurrency settings, submixes |
-| `Content/Game/Maps/` | Jasiu (shared on request) | Levels. Ask before touching; lock always |
-| `Source/`, `Config/` | Jasiu | C++ (if any) and project settings. Text files, these *can* merge |
+The Unreal project lives in `SoundStealth/`, so all `Content/` paths below are inside `SoundStealth/Content/`.
 
-Hand-off points between the two of you:
-- **Gameplay calls audio** through a small set of assets in `Content/Audio/Interfaces/`
-  (e.g. one MetaSound or Sound Cue per game event: `SFX_Footstep`, `SFX_DoorOpen`).
-  Jasiu wires them into Blueprints once; the brother can then reshape the sound freely
-  without touching Jasiu's files.
-- **Audio reports noise to the AI** through a shared Blueprint (e.g. `BP_NoiseEmitter`
-  using `Report Noise Event`) owned by Jasiu. The brother tells Jasiu the loudness values he wants.
-- Placing sounds in a level means editing the `.umap`, so either ask Jasiu to unlock it,
-  or put ambient sound actors in a **sub-level** `Content/Game/Maps/<Level>_Audio.umap`
-  that the brother owns. (Recommended: World Partition "Data Layers" or a streamed sub-level.)
+| Folder / file | Owner | What lives there |
+|---|---|---|
+| `Content/FirstPerson/` (incl. `Lvl_FirstPerson`) | Jasiu | Template map = Jasiu's gameplay sandbox, player character, GameMode, controller |
+| `Content/Gameplay/` | Jasiu | Gameplay Blueprints: interactables, items, inventory, health, enemy AI, UI |
+| `Content/Levels/` | Qubs123 | Level design: ship blockouts, one map per deck/area (e.g. `Levels/Ship/Deck_Lobby`) |
+| `Content/LevelPrototyping/` | Qubs123 | Template blockout meshes/materials for grey-boxing |
+| `Content/Characters/`, `Content/Input/` | Shared, ask first | Mannequins stand in for every character for now |
+| `Content/Developers/<name>/` | Each of you | Personal scratch space. Nothing outside may reference it |
+| `Config/`, `*.uproject` | Jasiu | Project settings (text files, these *can* merge) |
+| `Docs/` | Both | Story, characters, gameplay ideas as Markdown. Text merges fine, edit freely |
+
+How the two halves connect without touching each other's files:
+- **Qubs123 places Jasiu's Blueprints** (doors, pickups, enemies) into his levels. Placing one only changes his
+  level, never the Blueprint. If a Blueprint needs to behave differently, he asks Jasiu. Jasiu marks
+  variables **Instance Editable** so he can tweak them per placement himself.
+- **Agree on metrics early:** player height, jump/crouch height, corridor and door widths, stair step
+  height. Jasiu keeps a small metrics test area; levels are built to those numbers.
+- **Big ship levels use World Partition with One File Per Actor** (already on in this project, see
+  `__ExternalActors__`). Each placed object is its own file, so you can both work in the same level
+  without locking the whole map. Lock the individual actors instead.
+- **Work on `main` with locks.** Skip branches for now: Unreal assets can't be merged between branches.
 
 ## One-time setup (both of you)
 
@@ -80,18 +86,18 @@ Recommended: the **Project Borealis Git plugin** (handles LFS locking properly).
 2. **Lock what you'll edit:** in the Content Browser right-click the asset → *Source Control → Check Out*
    (that's the lock). Terminal equivalent:
    ```
-   git lfs lock Content/Audio/SFX_Footstep.uasset
+   git lfs lock "SoundStealth/Content/Gameplay/BP_Door.uasset"
    ```
 3. Edit, save.
 4. **Commit and push:** *Source Control → Submit Content* in Unreal, or
    ```
    git add -A
-   git commit -m "Footstep variations"
+   git commit -m "Door opens on interact"
    git push
    ```
 5. **Unlock** after pushing (Unreal's submit can do this automatically), or:
    ```
-   git lfs unlock Content/Audio/SFX_Footstep.uasset
+   git lfs unlock "SoundStealth/Content/Gameplay/BP_Door.uasset"
    ```
 
 Useful: `git lfs locks` lists every lock and who holds it.
