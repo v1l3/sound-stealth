@@ -3,6 +3,8 @@
 Two people, one repo. Unreal assets (`.uasset`, `.umap`) are binary and **cannot be merged**,
 so the golden rule is: **lock before you edit, unlock after you push.**
 
+> Brother (audio)? Start with [AUDIO_SETUP.md](AUDIO_SETUP.md).
+
 ## Who owns what
 
 | Folder | Owner | What lives there |
