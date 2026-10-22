@@ -12,11 +12,15 @@ they answer. Saying the name is the only identification: it's a courtesy system,
 
 Both may edit `Docs/**` (story, ideas, metrics). Everything else is shared: ask first.
 
+**Never close, quit, restart or kill Unreal**, and never discard unsaved work. Someone may be working in
+it. If Unreal needs closing (e.g. to pull), ask the person at that computer to save and close it themselves.
+
 ## "<name> here, want to work in Unreal"
 
 1. **Check you're on that person's computer.** Jan's Mac Studio has the clone at `~/Developer/sound-stealth`.
    Jakub works on his own computer. Don't work as Jakub on Jan's machine, because commits and locks
-   would be under v1l3.
+   would be under v1l3. If "Jakub here" arrives on Jan's Mac, don't touch Jan's Unreal or files at all:
+   just tell Jakub to start Claude on his own computer.
 2. **Get the latest:** if Unreal already has the project open, don't pull (it would overwrite files
    Unreal has loaded); skip to step 4. Otherwise run `git pull origin main` in the repo root, and make
    sure `git config lfs.locksverify` is `true`.
