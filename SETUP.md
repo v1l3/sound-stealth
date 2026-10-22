@@ -9,27 +9,26 @@ so the golden rule is: **lock before you edit, unlock after you push.**
 
 The Unreal project lives in `SoundStealth/`, so all `Content/` paths below are inside `SoundStealth/Content/`.
 
-| Folder / file | Owner | What lives there |
-|---|---|---|
-| `Content/FirstPerson/` (incl. `Lvl_FirstPerson`) | Jasiu | Template map = Jasiu's gameplay sandbox, player character, GameMode, controller |
-| `Content/Gameplay/` | Jasiu | Gameplay Blueprints: interactables, items, inventory, health, enemy AI, UI |
-| `Content/Levels/` | Qubs123 | Level design: ship blockouts, one map per deck/area (e.g. `Levels/Ship/Deck_Lobby`) |
-| `Content/LevelPrototyping/` | Qubs123 | Template blockout meshes/materials for grey-boxing |
-| `Content/Characters/`, `Content/Input/` | Shared, ask first | Mannequins stand in for every character for now |
-| `Content/Developers/<name>/` | Each of you | Personal scratch space. Nothing outside may reference it |
-| `Config/`, `*.uproject` | Jasiu | Project settings (text files, these *can* merge) |
-| `Docs/` | Both | Story, characters, gameplay ideas as Markdown. Text merges fine, edit freely |
+**For now, each of you works only in your own folder.** You never touch the same files, so there's
+almost nothing to lock.
 
-How the two halves connect without touching each other's files:
-- **Qubs123 places Jasiu's Blueprints** (doors, pickups, enemies) into his levels. Placing one only changes his
-  level, never the Blueprint. If a Blueprint needs to behave differently, he asks Jasiu. Jasiu marks
-  variables **Instance Editable** so he can tweak them per placement himself.
-- **Agree on metrics early:** player height, jump/crouch height, corridor and door widths, stair step
-  height. Jasiu keeps a small metrics test area; levels are built to those numbers.
-- **Big ship levels use World Partition with One File Per Actor** (already on in this project, see
-  `__ExternalActors__`). Each placed object is its own file, so you can both work in the same level
-  without locking the whole map. Lock the individual actors instead.
-- **Work on `main` with locks.** Skip branches for now: Unreal assets can't be merged between branches.
+| Folder | Owner | What lives there |
+|---|---|---|
+| `Content/Jasiu/` | Jasiu | Gameplay: player, GameMode, interactables, items, AI, UI, test maps |
+| `Content/Qubs/` | Qubs123 | Level design: ship blockouts, one map per deck/area |
+| `Content/FirstPerson/`, `Characters/`, `Input/`, `LevelPrototyping/` | Nobody (template) | Use as-is. To change something, **Duplicate** it into your own folder and edit the copy |
+| `Config/`, `*.uproject` | Shared | Project Settings. Text files that Git can usually merge, but tell each other when you change them |
+| `Docs/` | Both | Story, gameplay ideas, metrics as Markdown. Text merges fine, edit freely |
+
+Rules:
+- **Pull before you start, push when you finish**, every session.
+- **Don't reference the other person's folder** until you decide to join the work. Joining is easy later:
+  Qubs123 drags Jasiu's Blueprints into his levels.
+- **Agree on metrics early** (`Docs/Metrics.md`): player height, jump/crouch, corridor and door widths,
+  stair height, so the levels fit the gameplay.
+- **Work on `main`.** Skip branches for now: Unreal assets can't be merged between branches.
+- The rare shared file (e.g. a template asset you both really must change): lock it from the terminal first
+  (see *Daily workflow*).
 
 ## One-time setup (both of you)
 
@@ -86,7 +85,7 @@ Recommended: the **Project Borealis Git plugin** (handles LFS locking properly).
 2. **Lock what you'll edit:** in the Content Browser right-click the asset → *Source Control → Check Out*
    (that's the lock). Terminal equivalent:
    ```
-   git lfs lock "SoundStealth/Content/Gameplay/BP_Door.uasset"
+   git lfs lock "SoundStealth/Content/Jasiu/BP_Door.uasset"
    ```
 3. Edit, save.
 4. **Commit and push:** *Source Control → Submit Content* in Unreal, or
@@ -97,7 +96,7 @@ Recommended: the **Project Borealis Git plugin** (handles LFS locking properly).
    ```
 5. **Unlock** after pushing (Unreal's submit can do this automatically), or:
    ```
-   git lfs unlock "SoundStealth/Content/Gameplay/BP_Door.uasset"
+   git lfs unlock "SoundStealth/Content/Jasiu/BP_Door.uasset"
    ```
 
 Useful: `git lfs locks` lists every lock and who holds it.

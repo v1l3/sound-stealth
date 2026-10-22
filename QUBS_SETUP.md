@@ -54,17 +54,15 @@ Wait until Jasiu has pushed the Unreal project, then:
    Tick **Uses Git LFS 2 File Locking workflow**, enter **Qubs123** as the user name,
    and click **Accept Settings**.
 
-## 6. Your folders
+## 6. Your folder
 
-You own **`SoundStealth/Content/Levels/`** (your maps: one per ship deck/area, e.g. `Levels/Ship/Deck_Lobby`)
-and **`Content/LevelPrototyping/`** (blockout meshes). Use `Content/Developers/<your name>/` for experiments.
+Everything you make goes in **`SoundStealth/Content/Qubs/`** (create it in the Content Browser if you don't
+see it). Make one map per ship deck/area, e.g. `Qubs/Ship/Deck_Lobby`.
 
-Two rules for working together:
-- **Place Jasiu's Blueprints** (doors, pickups, enemies) in your levels freely, but **don't edit the Blueprints
-  themselves**. Ask Jasiu if one needs to behave differently.
-- **Build to the agreed metrics** (player height, corridor/door widths, stair height) so gameplay fits.
-- The project uses World Partition with One File Per Actor, so each object you place is its own file and
-  you can both work in the same level. Lock individual actors, not the whole map.
+- **Don't edit the template's files** (`FirstPerson/`, `Characters/`, `Input/`, `LevelPrototyping/`). Use them
+  as they are, or right-click → **Duplicate** into your folder and edit the copy.
+- **Don't use anything from `Content/Jasiu/`** until you both decide to join the work.
+- **Build to the agreed metrics** in `Docs/Metrics.md` so the gameplay fits later.
 
 ## 7. Every time you work
 
@@ -77,11 +75,11 @@ Two rules for working together:
 
 Terminal equivalents if you ever need them:
 ```
-git lfs lock "SoundStealth/Content/Levels/Ship/Deck_Lobby.umap"
+git lfs lock "SoundStealth/Content/Qubs/Ship/Deck_Lobby.umap"
 git add -A
 git commit -m "Lobby blockout"
 git push
-git lfs unlock "SoundStealth/Content/Levels/Ship/Deck_Lobby.umap"
+git lfs unlock "SoundStealth/Content/Qubs/Ship/Deck_Lobby.umap"
 git lfs locks     # who has what locked
 ```
 
