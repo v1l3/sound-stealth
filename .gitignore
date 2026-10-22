@@ -1,0 +1,57 @@
+# ---- Unreal Engine generated folders (rebuilt automatically, never commit) ----
+Binaries/
+Build/
+DerivedDataCache/
+Intermediate/
+Saved/
+Plugins/**/Binaries/
+Plugins/**/Intermediate/
+
+# ---- IDE / project files (regenerated from the .uproject) ----
+.vs/
+.vscode/
+.idea/
+*.sln
+*.suo
+*.opensdf
+*.sdf
+*.VC.db
+*.VC.opendb
+*.xcodeproj
+*.xcworkspace
+.ignore
+
+# ---- Compiled / build output ----
+*.pdb
+*.dll
+*.exe
+*.so
+*.dylib
+*.lib
+*.o
+*.ipa
+*.apk
+
+# ---- OS clutter ----
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- Audio middleware caches (if you add Wwise or FMOD later) ----
+# Wwise: commit the Wwise project, not its generated caches
+WwiseProject/.cache/
+WwiseProject/GeneratedSoundBanks/
+*.akd
+*.prof
+*.validationcache
+*.wsettings
+# FMOD: commit the .fspro project, not the cache
+FMODProject/.cache/
+FMODProject/.user/
+
+# ---- Keep raw source audio (DAW sessions, stems) out of the game repo ----
+# Store DAW sessions somewhere else (or a separate repo); only commit
+# the exported WAVs the game actually uses.
+*.als
+*.ptx
+*.rpp-bak
