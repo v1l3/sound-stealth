@@ -5,7 +5,6 @@
 # Unreal cannot merge these, so lock a file before editing it.
 *.uasset filter=lfs diff=lfs merge=lfs -text lockable
 *.umap   filter=lfs diff=lfs merge=lfs -text lockable
-
 # ---- Source art (LFS, lockable: binary, can't be merged) ----
 *.fbx    filter=lfs diff=lfs merge=lfs -text lockable
 *.obj    filter=lfs diff=lfs merge=lfs -text lockable
@@ -16,7 +15,6 @@
 *.tga    filter=lfs diff=lfs merge=lfs -text
 *.exr    filter=lfs diff=lfs merge=lfs -text
 *.hdr    filter=lfs diff=lfs merge=lfs -text
-
 # ---- Source audio (LFS) ----
 *.wav    filter=lfs diff=lfs merge=lfs -text
 *.aif    filter=lfs diff=lfs merge=lfs -text
@@ -28,13 +26,11 @@
 *.bnk    filter=lfs diff=lfs merge=lfs -text
 *.wem    filter=lfs diff=lfs merge=lfs -text
 *.bank   filter=lfs diff=lfs merge=lfs -text
-
 # ---- Video / fonts ----
 *.mp4    filter=lfs diff=lfs merge=lfs -text
 *.mov    filter=lfs diff=lfs merge=lfs -text
 *.ttf    filter=lfs diff=lfs merge=lfs -text
 *.otf    filter=lfs diff=lfs merge=lfs -text
-
 # ---- Config / code stays as normal text (mergeable) ----
 *.ini       text
 *.uproject  text
@@ -42,3 +38,27 @@
 *.cpp       text
 *.h         text
 *.cs        text
+*.uasset filter=lfs diff=lfs merge=lfs -text
+*.umap filter=lfs diff=lfs merge=lfs -text
+*.fbx filter=lfs diff=lfs merge=lfs -text
+*.obj filter=lfs diff=lfs merge=lfs -text
+*.blend filter=lfs diff=lfs merge=lfs -text
+*.psd filter=lfs diff=lfs merge=lfs -text
+*.png filter=lfs diff=lfs merge=lfs -text
+*.jpg filter=lfs diff=lfs merge=lfs -text
+*.tga filter=lfs diff=lfs merge=lfs -text
+*.exr filter=lfs diff=lfs merge=lfs -text
+*.hdr filter=lfs diff=lfs merge=lfs -text
+*.wav filter=lfs diff=lfs merge=lfs -text
+*.aif filter=lfs diff=lfs merge=lfs -text
+*.aiff filter=lfs diff=lfs merge=lfs -text
+*.flac filter=lfs diff=lfs merge=lfs -text
+*.ogg filter=lfs diff=lfs merge=lfs -text
+*.mp3 filter=lfs diff=lfs merge=lfs -text
+*.bnk filter=lfs diff=lfs merge=lfs -text
+*.wem filter=lfs diff=lfs merge=lfs -text
+*.bank filter=lfs diff=lfs merge=lfs -text
+*.mp4 filter=lfs diff=lfs merge=lfs -text
+*.mov filter=lfs diff=lfs merge=lfs -text
+*.ttf filter=lfs diff=lfs merge=lfs -text
+*.otf filter=lfs diff=lfs merge=lfs -text
