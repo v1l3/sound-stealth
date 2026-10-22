@@ -40,7 +40,7 @@ You now have your own copy at `C:\Dev\sound-stealth`.
 
 ## 4. Install Unreal Engine 5.8
 
-Install **5.8.2** (or newer 5.8.x) from the Epic Games Launcher. You and Jasiu should stay on the same 5.8 hotfix.
+Install the **latest 5.8 hotfix** (5.8.4 as of Oct 2026) from the Epic Games Launcher. You and Jasiu should stay on the same 5.8 hotfix.
 Assets saved in 5.9 would not open in 5.8, so never upgrade to a new minor version without agreeing first.
 
 ## 5. Open the project and connect source control

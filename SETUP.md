@@ -53,7 +53,7 @@ Hand-off points between the two of you:
 
 ## Creating the Unreal project (Jasiu, once)
 
-1. Create the project in **Unreal Engine 5.8.2** (both of you on the same 5.8 hotfix; never jump to 5.9 without agreeing), saving it **inside** the cloned folder
+1. Create the project in **Unreal Engine 5.8** (latest hotfix, 5.8.4 as of Oct 2026) (both of you on the same 5.8 hotfix; never jump to 5.9 without agreeing), saving it **inside** the cloned folder
    so the `.uproject` sits next to `.gitignore`.
 2. Close Unreal, then:
    ```
